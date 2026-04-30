@@ -1,0 +1,26 @@
+---
+description: AccuWeather (HACS) Home Assistant custom integration — domain, API, i18n, branding
+alwaysApply: true
+---
+
+# AccuWeather (HACS) integration
+
+Longer reference: [CONTEXT.md](CONTEXT.md) at repo root.
+
+## Invariants
+
+- **Domain:** `accuweather_hacs` only — never `accuweather` (core conflict).
+- **Coordinator:** One `AccuWeatherHacsCoordinator` refresh = **3** AccuWeather HTTP calls (`accuweather_api.async_fetch_all`). Sensors + weather consume coordinator data only; do not add per-entity polling.
+- **Options:** Scan interval key is **`scan_interval`**; still honor legacy **`poll_interval`** in `options_scan_interval_seconds()` (`const.py`).
+
+## i18n (custom integration)
+
+- Do **not** rely on `[%key:common::...%]` / `[%key:component::accuweather::...%]` in `strings.json` or `translations/en.json` for UI that failed before — use **plain strings** or fully resolved `entity` copy. Same pattern as the config-flow label fix.
+
+## Brand images (HA 2026.3+)
+
+- Integration art: `custom_components/accuweather_hacs/brand/` (`icon.png`, `logo.png`, `@2x`, dark variants). Loader requires a real **`brand/`** directory with valid PNGs (`has_branding`). Broken or missing assets → red placeholder in UI.
+
+## Edits
+
+- Match existing patterns in `config_flow.py`, `coordinator.py`, `sensor.py` (derived from core). Bump **`manifest.json`** `version` when shipping user-visible changes.

@@ -1,0 +1,17 @@
+# Home Assistant dev instance with this repo's custom_components bind-mounted.
+# UI: http://localhost:8123 — complete onboarding, then add AccuWeather (HACS).
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: accuweather-ha-docker
+    restart: unless-stopped
+    ports:
+      - "8123:8123"
+    environment:
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ha_config:/config
+      - ./custom_components:/config/custom_components
+
+volumes:
+  ha_config:
