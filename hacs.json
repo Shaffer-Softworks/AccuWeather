@@ -1,0 +1,8 @@
+{
+  "name": "AccuWeather (HACS)",
+  "filename": "",
+  "homeassistant": "2024.11.0",
+  "hide_default_branch": false,
+  "render_readme": true,
+  "zip_release": true
+}
