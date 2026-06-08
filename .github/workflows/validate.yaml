@@ -3,7 +3,11 @@ name: Validate
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
   pull_request:
+    branches:
+      - main
   schedule:
     - cron: "0 0 * * *"
 
@@ -31,3 +35,5 @@ jobs:
         uses: hacs/action@main
         with:
           category: integration
+          # Custom integrations ship brand assets in-repo; HA no longer accepts new domains in home-assistant/brands.
+          ignore: brands
