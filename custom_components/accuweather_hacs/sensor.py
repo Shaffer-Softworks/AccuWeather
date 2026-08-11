@@ -13,7 +13,6 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.const import (
-    CONCENTRATION_PARTS_PER_CUBIC_METER,
     PERCENTAGE,
     UV_INDEX,
     UnitOfIrradiance,
@@ -45,6 +44,8 @@ from .coordinator import AccuWeatherHacsConfigEntry, AccuWeatherHacsCoordinator
 
 
 PARALLEL_UPDATES = 1
+
+PARTS_PER_CUBIC_METER = "p/m³"
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -80,7 +81,7 @@ FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...] = (
     AccuWeatherSensorDescription(
         key="Grass",
         entity_registry_enabled_default=False,
-        native_unit_of_measurement=CONCENTRATION_PARTS_PER_CUBIC_METER,
+        native_unit_of_measurement=PARTS_PER_CUBIC_METER,
         value_fn=lambda data: cast(int, data[ATTR_VALUE]),
         attr_fn=lambda data: {
             ATTR_LEVEL: POLLEN_CATEGORY_MAP[data[ATTR_CATEGORY_VALUE]]
@@ -106,7 +107,7 @@ FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...] = (
     AccuWeatherSensorDescription(
         key="Mold",
         entity_registry_enabled_default=False,
-        native_unit_of_measurement=CONCENTRATION_PARTS_PER_CUBIC_METER,
+        native_unit_of_measurement=PARTS_PER_CUBIC_METER,
         value_fn=lambda data: cast(int, data[ATTR_VALUE]),
         attr_fn=lambda data: {
             ATTR_LEVEL: POLLEN_CATEGORY_MAP[data[ATTR_CATEGORY_VALUE]]
@@ -115,7 +116,7 @@ FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...] = (
     ),
     AccuWeatherSensorDescription(
         key="Ragweed",
-        native_unit_of_measurement=CONCENTRATION_PARTS_PER_CUBIC_METER,
+        native_unit_of_measurement=PARTS_PER_CUBIC_METER,
         entity_registry_enabled_default=False,
         value_fn=lambda data: cast(int, data[ATTR_VALUE]),
         attr_fn=lambda data: {
@@ -183,7 +184,7 @@ FORECAST_SENSOR_TYPES: tuple[AccuWeatherSensorDescription, ...] = (
     ),
     AccuWeatherSensorDescription(
         key="Tree",
-        native_unit_of_measurement=CONCENTRATION_PARTS_PER_CUBIC_METER,
+        native_unit_of_measurement=PARTS_PER_CUBIC_METER,
         entity_registry_enabled_default=False,
         value_fn=lambda data: cast(int, data[ATTR_VALUE]),
         attr_fn=lambda data: {
