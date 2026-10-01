@@ -2,7 +2,7 @@
 
 ## What this repo is
 
-A **Home Assistant custom integration** (`domain: **accuweather_hacs**`), installable via **HACS**, separate from core `accuweather`. It uses the PyPI package **`accuweather==5.1.0`** (same client style as core).
+A **Home Assistant custom integration** (`domain: **accuweather_hacs**`), installable via **HACS**, separate from core `accuweather`. It uses the PyPI package **`accuweather>=5.1.0`** (same client style as core).
 
 ## User-facing behavior
 
